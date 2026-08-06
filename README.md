@@ -8,8 +8,13 @@ Public downloads and installation information for the CineDock TV app.
 
 ## Download
 
-The replacement organization release is being prepared. Once published, the current preview will
-be available from this repository's Releases page.
+[Download CineDock TV for Android](https://github.com/cinedock/downloads/releases/download/v0.1.0-preview/CineDock-TV.apk)
+
+SHA-256:
+
+```text
+CF3F0FADB786AA1FEF9B2B69B8BD0868529F802F62C5C1AD4F949641B2FD4EE9
+```
 
 The CineDock server must already be installed and configured in a normal browser. Open the TV app,
 enter that CineDock server address (for example, `http://192.168.1.50:8945`), and choose
