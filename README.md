@@ -29,3 +29,8 @@ controls. If the wrong server address is entered, press the television remote's 
 
 Report installation and TV-app problems at
 [CineDock Unraid support](https://github.com/cinedock/unraid-templates/issues).
+
+## Support development
+
+CineDock is free. If it is useful to you, you can optionally
+[support its continued development](https://buymeacoffee.com/cinedock).
