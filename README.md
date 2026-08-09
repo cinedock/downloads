@@ -2,17 +2,18 @@
 
 Public downloads and installation information for the CineDock TV app.
 
-The APK is release-signed for Fire TV, Nvidia Shield, Android/Google TV and Android-based Zidoo
-players. Future CineDock TV updates will use the same signing identity.
+The APK is release-signed for Fire TV, Nvidia Shield and certified Android/Google TV devices.
+Zidoo and generic Android boxes are not currently supported. Future CineDock TV updates will use
+the same signing identity.
 
 ## Download
 
-[Download CineDock TV for Android](https://github.com/cinedock/downloads/releases/download/v0.2.0/CineDock-TV.apk)
+[Download CineDock TV for Android](https://github.com/cinedock/downloads/releases/download/v0.2.2/CineDock-TV.apk)
 
 SHA-256:
 
 ```text
-4E97E765FCD9BB733E06FB7758A52B065703B1814CB74ED2AE0EEE3F1EA6F42B
+A0CE3FF96895B03791F8AB74214F4681EFA0B33EDDAD11284D47CBFF328488F2
 ```
 
 The CineDock server must already be installed and configured in a normal browser. Open the TV app,
