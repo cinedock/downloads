@@ -4,6 +4,63 @@ Zinedock's **Set up from a computer** page talks to Zinedock on the Zidoo throug
 that API so that a script or an AI assistant can use it. It applies to Zinedock on the Z9X 8K and other Zidoos running
 the same app, from version 1.2.8.
 
+## In short
+
+Zinedock answers plain HTTP on your home network, with JSON. It changes Zinedock's own setup only: Home rows, layout
+and collections. It cannot change your films, Home Theater or the Zidoo.
+
+**With the code on the TV** (Setup > Computer > Set up from a computer shows an address and a six-digit code):
+
+```sh
+ZD=http://192.168.1.50:41234                      # the address on the TV
+curl -s -c zd.jar -d pin=123456 "$ZD/login"       # log in with the code
+curl -s -b zd.jar "$ZD/api/state"                 # read the setup
+curl -s -b zd.jar -H 'X-Zinedock: 1' -H 'Content-Type: application/json' -d '{"q":"night"}' "$ZD/api/search"
+```
+
+**With a key** (turn on Setup > Computer > Paired computers, then pair once from the setup page):
+
+```sh
+curl -s -H "Authorization: Bearer $KEY" http://192.168.1.50:9463/api/state
+```
+
+Every `POST` needs the header `X-Zinedock: 1` and a JSON body (`{}` if the call takes nothing).
+
+| Call | What it does |
+|---|---|
+| `GET /api/version` | This copy's version and the calls it answers |
+| `GET /api/state` | The whole setup: Home rows and layout |
+| `GET /api/export` | Save the setup as a file |
+| `POST /api/import` | Load a setup file. Replaces the whole setup |
+| `POST /api/undo-restore` | Bring back the setup from before the last import |
+| `POST /api/rows` | Order, show, hide and rename Home rows |
+| `POST /api/layout` | Spotlight, trailers, background, posters, top menu |
+| `POST /api/collections` | List your collections |
+| `POST /api/search` | Find films and series by name |
+| `POST /api/col-get` | One collection, with its titles in order |
+| `POST /api/col-save` | Make or change a collection: hand-picked, nested or rule-based |
+| `POST /api/col-delete` | Delete a collection |
+| `POST /api/onhome` | Put a row on Home or take it off |
+| `POST /api/suggested`, `suggested-add` | Ready-made collections that match the library; add one |
+| `POST /api/smart-choices`, `smart-preview` | What rules can choose from; what a set of rules matches |
+| `POST /api/people-search` | Find a director, actor or producer |
+| `POST /api/build` | Follow a rule-based collection while it builds |
+| `POST /api/tmdb-save`, `tmdb-remove`, `tmdb-status` | Your TMDB key: save or remove it; it is never sent back |
+| `POST /api/mdb-save`, `mdb-remove`, `mdb-status` | The same for your MDBList key |
+| `POST /api/pair-status`, `pair` | Whether pairing is on; pair this computer (code login only) |
+
+**Answers.** `{"ok": true, ...}` when done. `{"ok": false, "error": "why, in words", "code": "a_stable_word"}` when
+refused; decide on `code`. Common codes: `not_logged_in`, `session_ended`, `key_invalid`, `key_removed`, `unknown_call`,
+`refused`, `tv_not_on_home`.
+
+**Promise.** A version 1 call never changes what it means. New calls may be added.
+
+Everything below is the full reference: every field, limit and error.
+
+---
+
+# Reference
+
 Version 1 is a promise:
 
 - A version 1 call never changes what it means. New calls, and new fields in an answer, may be added.
